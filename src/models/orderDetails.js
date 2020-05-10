@@ -14,7 +14,11 @@ const orderDetailsSchema = new mongoose.Schema({
   product_id:{ type: SchemaTypes.ObjectId,},
   seller_id:{ type: SchemaTypes.ObjectId,},
   customer_id:{type: SchemaTypes.ObjectId,},
-
+  order_status: {
+  	type : String,
+  	enum : ['Accepted','Rejected','Dispatched','Delivered','Pending'], //Accepted/Rejected/Dispatched/Delivered
+    default:'Pending'
+  },
   order_id:{ type: SchemaTypes.ObjectId,},
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }

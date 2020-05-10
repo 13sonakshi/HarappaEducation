@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 var foreach = require('foreach');
 const push = require(sourcePath + '/lib/push');
 const customerModel = require(sourcePath + '/models/customers');
+const ordersDetailModel = require(sourcePath + '/models/orderDetails');
+
 const pagination = require(sourcePath + '/lib/pagination');
 const response = require(sourcePath + '/lib/response');
 const moment = require('moment');
@@ -37,13 +39,23 @@ class Customers {
                 }
                 return response.setResponse(res).validationError({},message);
             } else {
-              return response.setResponse(res).success(data, 'customer added successfully');
+              return response.setResponse(res).success(data, 'Customer added successfully');
             }
         });
     }
 
 
+    checkCustomerOrderStatus(req, res) {
    
+      ordersDetailModel.find({order_id:req.query.orderId},(err,products)=>{
+          if(err){
+              return response.setResponse(res).internalError(err);
+          }else {
+              return response.setResponse(res).success({products}, 'Listing fetched successfully.');
+          }
+      });
+
+  }
 
    
     

@@ -16,6 +16,7 @@ const routes = (app) => {
    
     app.route('/addSeller').post(seller.addSellers);
     app.route('/getNewSellerOrders').get(seller.getSellerOrders);
+    app.route('/updateSubOrderStatus').put(seller.updateSubOrderStatus);
 
 
 

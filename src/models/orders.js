@@ -11,11 +11,6 @@ var SchemaTypes = mongoose.Schema.Types;
 
 const ordersSchema = new mongoose.Schema({
   customer_id:{ type: SchemaTypes.ObjectId,},
-  order_status: {
-  	type : String,
-  	enum : ['Accepted','Rejected','Dispatched','Delivered','Pending'], //Accepted/Rejected/Dispatched/Delivered
-    default:'Pending'
-  },
   total_amount:Number,
   order_number:Number,
   order_date:{ type: Date, default: Date.now },

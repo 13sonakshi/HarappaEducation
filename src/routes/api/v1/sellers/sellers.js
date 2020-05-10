@@ -65,96 +65,33 @@ class Sellers {
     }
     
    
-    updateProfile(req, res) {
+    updateSubOrderStatus(req, res) {
 
-      var user_id = req.body.id;
-      var password = req.body.password;
-      var new_password = req.body.new_password;
-      var phone_number = req.body.phone_number;
-      var email = req.body.email;
-      var date_joined = req.body.date_joined;
-      var image = req.body.image;
-      var country_code = req.body.country_code;
-      //console.log(req);
+      var seller_id = req.body.sellerId;
+      var subOrderId = req.body.subOrderId;
+      var status = req.body.status;
+     
+      const save_data = {
 
-      userModel.findById(user_id).then((result) => {
-          if (!result) {
-              return response.setResponse(res).authenticationFailed();
-          } else {
-              if (password == '' || new_password == '') {
-                  const save_data = {
-                      //password: bcrypt.hashSync(req.body.new_password, bcrypt.genSaltSync(10)),
-                      updated_at: date_joined,
-                      phone_number: phone_number,
-                      email: email,
-                      image: image,
-                      country_code: country_code,
-                      user_credits: 0,
+      order_status: status,
+       
 
-                  }
-                //  console.log('here' + save_data);
+    }
 
-
-                  userModel.findByIdAndUpdate(user_id, { $set: save_data }, { new: true, upsert: true }, (err, doc) => {
-                      if (err) {
-                          console.log(err);
-                          return response.setResponse(res).internalError(err);
-                      } else {
-
-                          // var rec = doc.convertToJSON();
-                          return response.setResponse(res).success({}, 'Profile updated successfully');
-
-                      }
-                  });
-
-              } else {
-                  //console.log(req);
-               //   console.log('here to match passwrd');
-                //  console.log(req.body.password);
-                  //var password1 = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-
-                  result.comparePassword(req.body.password, function (err, isMatch) {
-                      if (err) {
-                     //     console.log(err + "here cccin else");
-                          return response.setResponse(res).internalError(err);
-                      } else if (isMatch) {
-                      //    console.log('match found');
-                          const save_data = {
-                              password: bcrypt.hashSync(req.body.new_password, bcrypt.genSaltSync(10)),
-                              updated_at: date_joined,
-                              phone_number: phone_number,
-                              email: email,
-                              image: image,
-                              country_code: country_code,
-                              user_credits: 0,
-
-
-                          }
-                      //    console.log('here' + save_data);
-
-
-                          userModel.findByIdAndUpdate(user_id, { $set: save_data }, { new: true, upsert: true }, (err, doc) => {
+            ordersDetailModel.findByIdAndUpdate(subOrderId, { $set: save_data }, { new: true, upsert: true }, (err, doc) => {
                               if (err) {
-                               //   console.log(err);
                                   return response.setResponse(res).internalError(err);
                               } else {
 
                                   //   var rec = doc.convertToJSON();
-                                  return response.setResponse(res).success({}, 'Profile updated successfully');
+                                  return response.setResponse(res).success({}, 'Status updated successfully');
 
                               }
                           });
-                      } else {
-                          return response.setResponse(res).failure({ old_password_matched: false }, 'The password you entered is incorrect.')
-                      }
-                  });
-              }
-              //console.log('user found');   
-
-
-          }
-      });
-
+                      
+                  
+             
+    
 
   }
 
