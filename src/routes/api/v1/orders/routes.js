@@ -3,19 +3,18 @@ const sourcePath = path.resolve(process.cwd(), 'src');
 const express = require('express');
 const mongoose = require('mongoose');
 const response = require(sourcePath + '/lib/response');
-const product = require(sourcePath + '/routes/api/v1/products/products');
+const order = require(sourcePath + '/routes/api/v1/orders/orders');
 
 
 const router = express.Router();
 const { body, validationResult } = require('express-validator/check');
-const productModel = mongoose.model('Products');
+const orderModel = mongoose.model('Orders');
 
 
 const routes = (app) => {
     //  Routes
-   app.route('/getProducts').get(product.getProducts);
    
-    app.route('/addProduct').post(product.addToProducts);
+    app.route('/addOrder').post(order.addOrders);
 
 
 

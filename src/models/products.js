@@ -34,7 +34,7 @@ const productsSchema = new mongoose.Schema({
   	default : false
   },
   
-  seller_id : String,
+  seller_id : { type: SchemaTypes.ObjectId,},
  
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }

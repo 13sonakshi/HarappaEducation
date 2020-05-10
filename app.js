@@ -17,7 +17,6 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 
 
-const User = require(sourcePath +  '/models/users');
 
 
 
@@ -45,29 +44,20 @@ const router = express.Router();              // get an instance of the express 
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 
-
-
-
-
-
-
- 
-  
-
-
-
-
-
-const userRoutes = require('./src/routes/api/v1/users/routes.js');
 const productRoutes = require('./src/routes/api/v1/products/routes.js');
+const customerRoutes = require('./src/routes/api/v1/customers/routes.js');
+const sellerRoutes = require('./src/routes/api/v1/sellers/routes.js');
+const orderRoutes = require('./src/routes/api/v1/orders/routes.js');
+
 
 
 
  
 
-userRoutes(app);
 productRoutes(app);
-
+customerRoutes(app);
+sellerRoutes(app);
+orderRoutes(app);
 
 
 module.exports = app;

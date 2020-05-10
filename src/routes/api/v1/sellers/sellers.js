@@ -3,7 +3,7 @@ const sourcePath = path.resolve(process.cwd(), 'src');
 const mongoose = require('mongoose');
 var foreach = require('foreach');
 const push = require(sourcePath + '/lib/push');
-const productModel = require(sourcePath + '/models/products');
+const sellersModel = require(sourcePath + '/models/sellers');
 const pagination = require(sourcePath + '/lib/pagination');
 const response = require(sourcePath + '/lib/response');
 const moment = require('moment');
@@ -21,21 +21,21 @@ class Sellers {
 
     addSellers(req, res) {
         console.log('here');
-        var customer = new customerModel();
-        customer.name = req.body.name;
-        customer.email = req.body.email;
-        customer.phone_number = req.body.phone;
+        var seller = new sellersModel();
+        seller.name = req.body.name;
+        seller.email = req.body.email;
+        seller.phone_number = req.body.phone;
       
 
 
-        customer.save((regErr,data)=>{
+        seller.save((regErr,data)=>{
             if(regErr){
                 if(regErr.code == 11000) {
                   var message = regErr.errmsg
                 }
                 return response.setResponse(res).validationError({},message);
             } else {
-              return response.setResponse(res).success(data, 'customer added successfully');
+              return response.setResponse(res).success(data, 'seller added successfully');
             }
         });
     }
@@ -52,7 +52,7 @@ class Sellers {
    
 }
 
-module.exports = new Products();
+module.exports = new Sellers();
 
 
 

@@ -23,11 +23,12 @@ class Products {
         console.log('here');
         var products = new productModel();
         products.name = req.body.name;
-       products.image = req.body.image;
+        products.image = req.body.image;
         products.description = req.body.description;
         products.price = req.body.price;
         products.categoryType = req.body.category_type;
-        products.weight=req.body.weight
+        products.weight=req.body.weight;
+        products.seller_id=req.body.sellerId;
 
 
 
