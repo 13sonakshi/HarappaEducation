@@ -1,0 +1,26 @@
+{
+  "name": "harppa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "start.js",
+  "scripts": {
+    "watch": "nodemon ./start.js"
+  },
+  "author": "Sonakshi",
+  "license": "ISC",
+  "dependencies": {
+    "@mongoosejs/double": "^0.2.0",
+    "apn": "^2.2.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-busboy": "^8.0.0",
+    "express-validator": "^6.4.1",
+    "fcm-node": "^1.5.2",
+    "foreach": "^2.0.5",
+    "moment": "^2.25.3",
+    "mongoose": "^5.9.12",
+    "mongoose-unique-validator": "^2.0.3"
+  }
+}
