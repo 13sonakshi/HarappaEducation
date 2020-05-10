@@ -14,7 +14,7 @@ const orderModel = mongoose.model('Orders');
 const routes = (app) => {
     //  Routes
    
-    app.route('/addOrder').post(order.addOrders);
+    app.route('/placeAnOrder').post(order.addOrders);
 
 
 

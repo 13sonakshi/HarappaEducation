@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 var foreach = require('foreach');
 const push = require(sourcePath + '/lib/push');
 const sellersModel = require(sourcePath + '/models/sellers');
+const ordersDetailModel = require(sourcePath + '/models/orderDetails');
+
 const pagination = require(sourcePath + '/lib/pagination');
 const response = require(sourcePath + '/lib/response');
 const moment = require('moment');
@@ -44,7 +46,22 @@ class Sellers {
 
    
 
-   
+    getSellerOrders(req, res) {
+        var seller_id = req.query.id;
+        const self = this;
+        ordersDetailModel.findById(seller_id)
+
+            .then(async (result) => {
+                if (!result) {
+                    return response.setResponse(res).authenticationFailed();
+                } else {
+                    // let user_data = result.convertToJSON();
+                    // user_data._id = req.query.id;
+                  return response.setResponse(res).success(result);
+                }
+            });
+
+    }
     
    
 

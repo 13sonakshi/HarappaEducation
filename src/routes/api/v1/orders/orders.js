@@ -39,14 +39,15 @@ class Orders {
                 if (req.body.products_array !== "") {
                     saveProductsByUser(req.body.products_array, data._id, req.body.customer_id).then( async (res) => {
                         if (res == true) {
-                            console.log('success');
+                            console.log('success' +res);
+                            
 
                         }else{
 
                         }
 
                     });   
-                    return response.setResponse(res).success(data, 'Product added successfully');
+                    return response.setResponse(res).success(data, 'Order placed successfully');
       
                  }
             }
@@ -77,16 +78,24 @@ function saveProductsByUser(product_array, order_id, customer_id) {
 
 
     var data = JSON.parse(JSON.stringify(product_array));
-    console.log(data+"heyyy");
+   // console.log(data+"heyyy");
     for ( var i = 0; i < data.length; i++) {
       data[i].order_id = order_id;
       data[i].customer_id = customer_id;
+
     }
   
-  console.log(data);
+ // console.log(data);
   
     ordersDetailModel.insertMany(data).then((res) => {
-        resolve(true);
+        console.log(res);
+        var message = "Dear new Harppa Seller, <br/><br/>.You have received new order";
+                          var subject = "Harppa Welcome !";
+                          sendMails(res.sellerId, subject, message);
+        
+        
+                          resolve(true);
+
     //  console.log('success in saving products');
     })
       .catch((err) => {

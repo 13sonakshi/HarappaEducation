@@ -7,6 +7,8 @@ const customerModel = require(sourcePath + '/models/customers');
 const pagination = require(sourcePath + '/lib/pagination');
 const response = require(sourcePath + '/lib/response');
 const moment = require('moment');
+//const emailjs = require("emailjs");
+
 
 const utility = require(sourcePath + '/lib/utility');
 const ObjectId = mongoose.Types.ObjectId;
@@ -45,10 +47,48 @@ class Customers {
 
    
     
-   
 
 
+
    
+}
+
+function sendMails(to, subject, message) {
+  console.log(to);
+  var from = "norplykwixglobal@gmail.com";
+  var nodemailer = require('nodemailer');
+  var smtpTransport = require('nodemailer-smtp-transport');
+const transporter = nodemailer.createTransport(smtpTransport({
+          service: 'gmail',
+          host: 'smtp.gmail.com',
+        //  port: 465,
+        //  secure: false,
+          auth: {
+              user: 'norplykwixglobal@gmail.com',
+              pass: 'kite12345'
+          }
+      }));
+
+
+  transporter.sendMail({
+      html: message,
+      from: from,
+      to: to,
+      //bcc: "Sonakshi <sonakshis@kwixglobal.com>",
+      subject: subject,
+      attachment:
+              [
+                  {data: message, alternative: true},
+              ]
+  }, function (err, message) {
+      if (err) {
+          console.log('error m ayaa');
+          console.log(err);
+      } else {
+          console.log('result m aaya');
+          console.log(message);
+      }
+  });
 }
 
 module.exports = new Customers();
