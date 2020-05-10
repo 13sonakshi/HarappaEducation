@@ -15,6 +15,7 @@ const routes = (app) => {
     //  Routes[]
    
     app.route('/addSeller').post(seller.addSellers);
+    app.route('/getNewSellerOrders').get(seller.getSellerOrders);
 
 
 

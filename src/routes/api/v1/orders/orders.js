@@ -26,7 +26,7 @@ class Orders {
 
         var orders = new ordersModel();
         orders.order_number= Math.floor(Math.random() * 10);
-        orders.customerId = req.body.customer_id;
+        orders.customerId = req.body.customerId;
         orders.save((regErr,data)=>{
             if(regErr){
                 if(regErr.code == 11000) {
@@ -37,9 +37,8 @@ class Orders {
                 
 
                 if (req.body.products_array !== "") {
-                    saveProductsByUser(req.body.products_array, data._id, req.body.customer_id).then( async (res) => {
+                    saveProductsByUser(req.body.products_array,data._id,req.body.customerId).then( async (res) => {
                         if (res == true) {
-                            console.log('success' +res);
                             
 
                         }else{
@@ -47,7 +46,10 @@ class Orders {
                         }
 
                     });   
+
+
                     return response.setResponse(res).success(data, 'Order placed successfully');
+
       
                  }
             }
@@ -71,27 +73,22 @@ to save animals data for user in animal_space_model.
 
 
 
-function saveProductsByUser(product_array, order_id, customer_id) {
-    //console.log(product_array);
-
+function saveProductsByUser(product_array, order_id,customer_id) {
+console.log(customer_id);
     return new Promise(function (resolve, reject) {
-
-
     var data = JSON.parse(JSON.stringify(product_array));
-   // console.log(data+"heyyy");
     for ( var i = 0; i < data.length; i++) {
       data[i].order_id = order_id;
       data[i].customer_id = customer_id;
 
     }
   
- // console.log(data);
-  
+    console.log(data);
     ordersDetailModel.insertMany(data).then((res) => {
-        console.log(res);
-        var message = "Dear new Harppa Seller, <br/><br/>.You have received new order";
-                          var subject = "Harppa Welcome !";
-                          sendMails(res.sellerId, subject, message);
+
+        // var message = "Dear new Harppa Seller, <br/><br/>.You have received new order";
+        //                   var subject = "Harppa Welcome !";
+        //                   sendMails(res.sellerId, subject, message);
         
         
                           resolve(true);

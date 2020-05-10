@@ -13,6 +13,7 @@ const orderDetailsSchema = new mongoose.Schema({
   quantity: Number,
   product_id:{ type: SchemaTypes.ObjectId,},
   seller_id:{ type: SchemaTypes.ObjectId,},
+  customer_id:{type: SchemaTypes.ObjectId,},
 
   order_id:{ type: SchemaTypes.ObjectId,},
   created_at: { type: Date, default: Date.now },
