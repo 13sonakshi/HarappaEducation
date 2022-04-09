@@ -19,7 +19,7 @@
     "express-validator": "^6.4.1",
     "fcm-node": "^1.5.2",
     "foreach": "^2.0.5",
-    "moment": "^2.25.3",
+    "moment": "^2.29.2",
     "mongoose": "^5.9.12",
     "mongoose-unique-validator": "^2.0.3"
   }
